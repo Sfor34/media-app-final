@@ -1,17 +1,12 @@
-name: Build APK
+name: Fast APK Build
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 120  # اضافه کردن این خط
     steps:
     - uses: actions/checkout@v4
-    - name: Install dependencies
-      run: |
-        pip install buildozer cython
     - name: Build APK
-      run: |
-        buildozer android debug
+      uses: ArtemSBulgakov/buildozer-action@v1.5.0
     - uses: actions/upload-artifact@v4
       with:
         name: app
